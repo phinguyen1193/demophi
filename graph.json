@@ -1,0 +1,1246 @@
+{
+  "nodes": [
+    {
+      "id": "stair-3",
+      "x": 762.83,
+      "y": 761.63,
+      "type": "stair"
+    },
+    {
+      "id": "store-2-10_2-10A",
+      "x": 732.6,
+      "y": 814.22,
+      "type": "store"
+    },
+    {
+      "id": "store-2-09B",
+      "x": 784.03,
+      "y": 809.8,
+      "type": "store"
+    },
+    {
+      "id": "store-2-09A",
+      "x": 822.34,
+      "y": 802.94,
+      "type": "store"
+    },
+    {
+      "id": "store-2-08",
+      "x": 872.64,
+      "y": 795.99,
+      "type": "store"
+    },
+    {
+      "id": "store-K2-10",
+      "x": 974.51,
+      "y": 636.66,
+      "type": "store"
+    },
+    {
+      "id": "store-K2-09",
+      "x": 958.18,
+      "y": 675.3,
+      "type": "store"
+    },
+    {
+      "id": "store-K2-11",
+      "x": 984.41,
+      "y": 611.25,
+      "type": "store"
+    },
+    {
+      "id": "store-K2-12",
+      "x": 994.17,
+      "y": 586.42,
+      "type": "store"
+    },
+    {
+      "id": "store-K2-06_K2-07",
+      "x": 1078.36,
+      "y": 683.6,
+      "type": "store"
+    },
+    {
+      "id": "store-2-33A_2-35",
+      "x": 1225.28,
+      "y": 673.74,
+      "type": "store"
+    },
+    {
+      "id": "store-2-32_2-33",
+      "x": 1256.58,
+      "y": 604.66,
+      "type": "store"
+    },
+    {
+      "id": "store-2-22",
+      "x": 1273.3,
+      "y": 552.81,
+      "type": "store"
+    },
+    {
+      "id": "store-K2-13",
+      "x": 1194.5,
+      "y": 572.41,
+      "type": "store"
+    },
+    {
+      "id": "store-K2-15",
+      "x": 1208.24,
+      "y": 529.97,
+      "type": "store"
+    },
+    {
+      "id": "store-K2-16",
+      "x": 1147.71,
+      "y": 530.65,
+      "type": "store"
+    },
+    {
+      "id": "store-K2-18",
+      "x": 1097.91,
+      "y": 512.24,
+      "type": "store"
+    },
+    {
+      "id": "store-K2-19",
+      "x": 1062.51,
+      "y": 509.09,
+      "type": "store"
+    },
+    {
+      "id": "store-K2-20",
+      "x": 1024.74,
+      "y": 502.28,
+      "type": "store"
+    },
+    {
+      "id": "store-2-17",
+      "x": 1060.31,
+      "y": 441.38,
+      "type": "store"
+    },
+    {
+      "id": "store-2-20",
+      "x": 1157.57,
+      "y": 455.47,
+      "type": "store"
+    },
+    {
+      "id": "store-2-19",
+      "x": 1122.18,
+      "y": 450.73,
+      "type": "store"
+    },
+    {
+      "id": "store-2-18",
+      "x": 1092,
+      "y": 446.42,
+      "type": "store"
+    },
+    {
+      "id": "store-2-30",
+      "x": 1238.96,
+      "y": 456.88,
+      "type": "store"
+    },
+    {
+      "id": "stair-1",
+      "x": 1078.41,
+      "y": 801.94,
+      "type": "stair"
+    },
+    {
+      "id": "store-2-02",
+      "x": 1148.49,
+      "y": 775.95,
+      "type": "store"
+    },
+    {
+      "id": "store-2-03",
+      "x": 1231.92,
+      "y": 798.62,
+      "type": "store"
+    },
+    {
+      "id": "store-2-03A",
+      "x": 1126.22,
+      "y": 847.26,
+      "type": "store"
+    },
+    {
+      "id": "store-2-05",
+      "x": 1055.33,
+      "y": 855.69,
+      "type": "store"
+    },
+    {
+      "id": "store-2-06A",
+      "x": 1009.68,
+      "y": 840.17,
+      "type": "store"
+    },
+    {
+      "id": "store-2-07B",
+      "x": 923.01,
+      "y": 802.94,
+      "type": "store"
+    },
+    {
+      "id": "store-2-07A",
+      "x": 953.63,
+      "y": 814.22,
+      "type": "store"
+    },
+    {
+      "id": "store-2-06B",
+      "x": 981.58,
+      "y": 826.55,
+      "type": "store"
+    },
+    {
+      "id": "store-2-11",
+      "x": 608.49,
+      "y": 768.46,
+      "type": "store"
+    },
+    {
+      "id": "store-2-12",
+      "x": 582.87,
+      "y": 741.6,
+      "type": "store"
+    },
+    {
+      "id": "store-2-12A",
+      "x": 593.28,
+      "y": 713.22,
+      "type": "store"
+    },
+    {
+      "id": "store-2-13A",
+      "x": 655.43,
+      "y": 634.36,
+      "type": "store"
+    },
+    {
+      "id": "store-2-15",
+      "x": 741.4,
+      "y": 636.31,
+      "type": "store"
+    },
+    {
+      "id": "store-2-13B",
+      "x": 668.42,
+      "y": 688.51,
+      "type": "store"
+    },
+    {
+      "id": "store-2-13C",
+      "x": 659.34,
+      "y": 721.94,
+      "type": "store"
+    },
+    {
+      "id": "store-2-16",
+      "x": 849.69,
+      "y": 639.63,
+      "type": "store"
+    },
+    {
+      "id": "elevator-2",
+      "x": 1261.83,
+      "y": 728.32,
+      "type": "elevator"
+    },
+    {
+      "id": "elevator-1",
+      "x": 1209.39,
+      "y": 418.59,
+      "type": "elevator"
+    },
+    {
+      "id": "stair-2",
+      "x": 1097.51,
+      "y": 724.81,
+      "type": "stair"
+    },
+    {
+      "id": "stair-4",
+      "x": 781.88,
+      "y": 683.04,
+      "type": "stair"
+    },
+    {
+      "id": "stair-5",
+      "x": 1094.29,
+      "y": 560.87,
+      "type": "stair"
+    },
+    {
+      "id": "stair-6",
+      "x": 1045.11,
+      "y": 544.02,
+      "type": "stair"
+    }
+  ],
+  "corridor_edges": [
+    {
+      "id": "corridor-4",
+      "endpoint1": {
+        "x": 833.08,
+        "y": 772.44
+      },
+      "endpoint2": {
+        "x": 822.34,
+        "y": 802.94
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-2-09A"
+        }
+      ]
+    },
+    {
+      "id": "corridor-5",
+      "endpoint1": {
+        "x": 794.14,
+        "y": 774.8
+      },
+      "endpoint2": {
+        "x": 784.03,
+        "y": 809.8
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-2-09B"
+        }
+      ]
+    },
+    {
+      "id": "corridor-6",
+      "endpoint1": {
+        "x": 880.62,
+        "y": 772.44
+      },
+      "endpoint2": {
+        "x": 872.64,
+        "y": 795.99
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-2-08"
+        }
+      ]
+    },
+    {
+      "id": "corridor-7",
+      "endpoint1": {
+        "x": 933.3,
+        "y": 778.68
+      },
+      "endpoint2": {
+        "x": 923.01,
+        "y": 802.94
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-2-07B"
+        }
+      ]
+    },
+    {
+      "id": "corridor-8",
+      "endpoint1": {
+        "x": 964.92,
+        "y": 790.81
+      },
+      "endpoint2": {
+        "x": 953.63,
+        "y": 814.22
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-2-07A"
+        }
+      ]
+    },
+    {
+      "id": "corridor-9",
+      "endpoint1": {
+        "x": 993.03,
+        "y": 801.34
+      },
+      "endpoint2": {
+        "x": 981.58,
+        "y": 826.55
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-2-06B"
+        }
+      ]
+    },
+    {
+      "id": "corridor-10",
+      "endpoint1": {
+        "x": 1022.78,
+        "y": 812.62
+      },
+      "endpoint2": {
+        "x": 1009.68,
+        "y": 840.17
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-2-06A"
+        }
+      ]
+    },
+    {
+      "id": "corridor-11",
+      "endpoint1": {
+        "x": 1069.69,
+        "y": 819.01
+      },
+      "endpoint2": {
+        "x": 1055.33,
+        "y": 855.69
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-2-05"
+        }
+      ]
+    },
+    {
+      "id": "corridor-12",
+      "endpoint1": {
+        "x": 1113.33,
+        "y": 822.35
+      },
+      "endpoint2": {
+        "x": 1126.22,
+        "y": 847.26
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-2-03A"
+        }
+      ]
+    },
+    {
+      "id": "corridor-13",
+      "endpoint1": {
+        "x": 1074.3,
+        "y": 819.58
+      },
+      "endpoint2": {
+        "x": 1078.41,
+        "y": 801.94
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "stair-1"
+        }
+      ]
+    },
+    {
+      "id": "corridor-14",
+      "endpoint1": {
+        "x": 1192.51,
+        "y": 790.86
+      },
+      "endpoint2": {
+        "x": 1231.92,
+        "y": 798.62
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-2-03"
+        }
+      ]
+    },
+    {
+      "id": "corridor-15",
+      "endpoint1": {
+        "x": 1195.56,
+        "y": 782.89
+      },
+      "endpoint2": {
+        "x": 1148.49,
+        "y": 775.95
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-2-02"
+        }
+      ]
+    },
+    {
+      "id": "corridor-16",
+      "endpoint1": {
+        "x": 1237.93,
+        "y": 725.61
+      },
+      "endpoint2": {
+        "x": 1257.87,
+        "y": 675.7
+      },
+      "connects": []
+    },
+    {
+      "id": "corridor-18",
+      "endpoint1": {
+        "x": 1081.86,
+        "y": 707.19
+      },
+      "endpoint2": {
+        "x": 1078.36,
+        "y": 683.6
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-K2-06_K2-07"
+        }
+      ]
+    },
+    {
+      "id": "corridor-19",
+      "endpoint1": {
+        "x": 1048.86,
+        "y": 566.88
+      },
+      "endpoint2": {
+        "x": 1223.45,
+        "y": 591.39
+      },
+      "connects": []
+    },
+    {
+      "id": "corridor-20",
+      "endpoint1": {
+        "x": 1192.04,
+        "y": 491.07
+      },
+      "endpoint2": {
+        "x": 1158.44,
+        "y": 582.26
+      },
+      "connects": []
+    },
+    {
+      "id": "corridor-21",
+      "endpoint1": {
+        "x": 1179.75,
+        "y": 524.44
+      },
+      "endpoint2": {
+        "x": 1208.24,
+        "y": 529.97
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-K2-15"
+        }
+      ]
+    },
+    {
+      "id": "corridor-22",
+      "endpoint1": {
+        "x": 1164.08,
+        "y": 566.94
+      },
+      "endpoint2": {
+        "x": 1194.5,
+        "y": 572.41
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-K2-13"
+        }
+      ]
+    },
+    {
+      "id": "corridor-23",
+      "endpoint1": {
+        "x": 1175.24,
+        "y": 536.14
+      },
+      "endpoint2": {
+        "x": 1147.71,
+        "y": 530.65
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-K2-16"
+        }
+      ]
+    },
+    {
+      "id": "corridor-24",
+      "endpoint1": {
+        "x": 1099.32,
+        "y": 573.62
+      },
+      "endpoint2": {
+        "x": 1137.28,
+        "y": 483.18
+      },
+      "connects": []
+    },
+    {
+      "id": "corridor-25",
+      "endpoint1": {
+        "x": 1123.69,
+        "y": 515.57
+      },
+      "endpoint2": {
+        "x": 1097.91,
+        "y": 512.24
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-K2-18"
+        }
+      ]
+    },
+    {
+      "id": "corridor-26",
+      "endpoint1": {
+        "x": 1072.79,
+        "y": 473.9
+      },
+      "endpoint2": {
+        "x": 1062.51,
+        "y": 509.09
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-K2-19"
+        }
+      ]
+    },
+    {
+      "id": "corridor-27",
+      "endpoint1": {
+        "x": 1037.65,
+        "y": 468.84
+      },
+      "endpoint2": {
+        "x": 1024.74,
+        "y": 502.28
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-K2-20"
+        }
+      ]
+    },
+    {
+      "id": "corridor-28",
+      "endpoint1": {
+        "x": 1051.21,
+        "y": 471.03
+      },
+      "endpoint2": {
+        "x": 1060.31,
+        "y": 441.38
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-2-17"
+        }
+      ]
+    },
+    {
+      "id": "corridor-29",
+      "endpoint1": {
+        "x": 1083.88,
+        "y": 475.49
+      },
+      "endpoint2": {
+        "x": 1092,
+        "y": 446.42
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-2-18"
+        }
+      ]
+    },
+    {
+      "id": "corridor-30",
+      "endpoint1": {
+        "x": 1113.86,
+        "y": 479.76
+      },
+      "endpoint2": {
+        "x": 1122.18,
+        "y": 450.73
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-2-19"
+        }
+      ]
+    },
+    {
+      "id": "corridor-31",
+      "endpoint1": {
+        "x": 1147.75,
+        "y": 484.69
+      },
+      "endpoint2": {
+        "x": 1157.57,
+        "y": 455.47
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-2-20"
+        }
+      ]
+    },
+    {
+      "id": "corridor-32",
+      "endpoint1": {
+        "x": 1185.93,
+        "y": 490.19
+      },
+      "endpoint2": {
+        "x": 1209.39,
+        "y": 418.59
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "elevator-1"
+        }
+      ]
+    },
+    {
+      "id": "corridor-33",
+      "endpoint1": {
+        "x": 1240.21,
+        "y": 546.65
+      },
+      "endpoint2": {
+        "x": 1273.3,
+        "y": 552.81
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-2-22"
+        }
+      ]
+    },
+    {
+      "id": "corridor-34",
+      "endpoint1": {
+        "x": 1220,
+        "y": 600.62
+      },
+      "endpoint2": {
+        "x": 1256.58,
+        "y": 604.66
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-2-32_2-33"
+        }
+      ]
+    },
+    {
+      "id": "corridor-35",
+      "endpoint1": {
+        "x": 1250.07,
+        "y": 521.33
+      },
+      "endpoint2": {
+        "x": 1325.87,
+        "y": 532.81
+      },
+      "connects": []
+    },
+    {
+      "id": "corridor-36",
+      "endpoint1": {
+        "x": 1193.62,
+        "y": 671.02
+      },
+      "endpoint2": {
+        "x": 1225.28,
+        "y": 673.74
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-2-33A_2-35"
+        }
+      ]
+    },
+    {
+      "id": "corridor-37",
+      "endpoint1": {
+        "x": 1038.88,
+        "y": 593.03
+      },
+      "endpoint2": {
+        "x": 994.17,
+        "y": 586.42
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-K2-12"
+        }
+      ]
+    },
+    {
+      "id": "corridor-38",
+      "endpoint1": {
+        "x": 1028.78,
+        "y": 619.5
+      },
+      "endpoint2": {
+        "x": 984.41,
+        "y": 611.25
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-K2-11"
+        }
+      ]
+    },
+    {
+      "id": "corridor-39",
+      "endpoint1": {
+        "x": 1019.99,
+        "y": 642.54
+      },
+      "endpoint2": {
+        "x": 974.51,
+        "y": 636.66
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-K2-10"
+        }
+      ]
+    },
+    {
+      "id": "corridor-40",
+      "endpoint1": {
+        "x": 1003.52,
+        "y": 685.69
+      },
+      "endpoint2": {
+        "x": 958.18,
+        "y": 675.3
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-K2-09"
+        }
+      ]
+    },
+    {
+      "id": "corridor-42",
+      "endpoint1": {
+        "x": 713.95,
+        "y": 763.59
+      },
+      "endpoint2": {
+        "x": 684.24,
+        "y": 840.14
+      },
+      "connects": []
+    },
+    {
+      "id": "corridor-43",
+      "endpoint1": {
+        "x": 615.14,
+        "y": 749.4
+      },
+      "endpoint2": {
+        "x": 608.49,
+        "y": 768.46
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-2-11"
+        }
+      ]
+    },
+    {
+      "id": "corridor-44",
+      "endpoint1": {
+        "x": 613.9,
+        "y": 747.45
+      },
+      "endpoint2": {
+        "x": 582.87,
+        "y": 741.6
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-2-12"
+        }
+      ]
+    },
+    {
+      "id": "corridor-45",
+      "endpoint1": {
+        "x": 624.39,
+        "y": 720.37
+      },
+      "endpoint2": {
+        "x": 593.28,
+        "y": 713.22
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-2-12A"
+        }
+      ]
+    },
+    {
+      "id": "corridor-46",
+      "endpoint1": {
+        "x": 638.36,
+        "y": 684.27
+      },
+      "endpoint2": {
+        "x": 567.54,
+        "y": 672.68
+      },
+      "connects": []
+    },
+    {
+      "id": "corridor-47",
+      "endpoint1": {
+        "x": 572.36,
+        "y": 673.46
+      },
+      "endpoint2": {
+        "x": 599.36,
+        "y": 604.74
+      },
+      "connects": []
+    },
+    {
+      "id": "corridor-48",
+      "endpoint1": {
+        "x": 647.13,
+        "y": 661.64
+      },
+      "endpoint2": {
+        "x": 655.43,
+        "y": 634.36
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-2-13A"
+        }
+      ]
+    },
+    {
+      "id": "corridor-49",
+      "endpoint1": {
+        "x": 755.73,
+        "y": 672.63
+      },
+      "endpoint2": {
+        "x": 741.4,
+        "y": 636.31
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-2-15"
+        }
+      ]
+    },
+    {
+      "id": "corridor-50",
+      "endpoint1": {
+        "x": 836.9,
+        "y": 682.28
+      },
+      "endpoint2": {
+        "x": 849.69,
+        "y": 639.63
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-2-16"
+        }
+      ]
+    },
+    {
+      "id": "corridor-51",
+      "endpoint1": {
+        "x": 841.33,
+        "y": 684.17
+      },
+      "endpoint2": {
+        "x": 815.5,
+        "y": 773.47
+      },
+      "connects": []
+    },
+    {
+      "id": "corridor-52",
+      "endpoint1": {
+        "x": 1037.46,
+        "y": 715.73
+      },
+      "endpoint2": {
+        "x": 1011.61,
+        "y": 808.38
+      },
+      "connects": []
+    },
+    {
+      "id": "corridor-53",
+      "endpoint1": {
+        "x": 1103.73,
+        "y": 702.98
+      },
+      "endpoint2": {
+        "x": 1097.51,
+        "y": 724.81
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "stair-2"
+        }
+      ]
+    },
+    {
+      "id": "corridor-54",
+      "endpoint1": {
+        "x": 786.54,
+        "y": 666.14
+      },
+      "endpoint2": {
+        "x": 781.88,
+        "y": 683.04
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "stair-4"
+        }
+      ]
+    },
+    {
+      "id": "corridor-55",
+      "endpoint1": {
+        "x": 677.02,
+        "y": 665.96
+      },
+      "endpoint2": {
+        "x": 668.42,
+        "y": 688.51
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-2-13B"
+        }
+      ]
+    },
+    {
+      "id": "corridor-56",
+      "endpoint1": {
+        "x": 648.57,
+        "y": 754.2
+      },
+      "endpoint2": {
+        "x": 659.34,
+        "y": 721.94
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-2-13C"
+        }
+      ]
+    },
+    {
+      "id": "corridor-57",
+      "endpoint1": {
+        "x": 1110.14,
+        "y": 822.35
+      },
+      "endpoint2": {
+        "x": 1078.88,
+        "y": 911.19
+      },
+      "connects": []
+    },
+    {
+      "id": "corridor-58",
+      "endpoint1": {
+        "x": 1226.41,
+        "y": 496.02
+      },
+      "endpoint2": {
+        "x": 1238.96,
+        "y": 456.88
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-2-30"
+        }
+      ]
+    },
+    {
+      "id": "corridor-59",
+      "endpoint1": {
+        "x": 1103.3,
+        "y": 564.14
+      },
+      "endpoint2": {
+        "x": 1094.29,
+        "y": 560.87
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "stair-5"
+        }
+      ]
+    },
+    {
+      "id": "corridor-60",
+      "endpoint1": {
+        "x": 1000.51,
+        "y": 536.48
+      },
+      "endpoint2": {
+        "x": 1045.11,
+        "y": 544.02
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "stair-6"
+        }
+      ]
+    },
+    {
+      "id": "corridor-1",
+      "endpoint1": {
+        "x": 779.68,
+        "y": 763.47
+      },
+      "endpoint2": {
+        "x": 762.83,
+        "y": 761.63
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "stair-3"
+        }
+      ]
+    },
+    {
+      "id": "corridor-2",
+      "endpoint1": {
+        "x": 759.39,
+        "y": 774.13
+      },
+      "endpoint2": {
+        "x": 747.26,
+        "y": 759.26
+      },
+      "connects": []
+    },
+    {
+      "id": "corridor-3",
+      "endpoint1": {
+        "x": 777.45,
+        "y": 776.27
+      },
+      "endpoint2": {
+        "x": 1261.83,
+        "y": 728.32
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "elevator-2"
+        }
+      ]
+    },
+    {
+      "id": "corridor-17",
+      "endpoint1": {
+        "x": 1218.26,
+        "y": 723.69
+      },
+      "endpoint2": {
+        "x": 1175.8,
+        "y": 718.59
+      },
+      "connects": []
+    },
+    {
+      "id": "corridor-41",
+      "endpoint1": {
+        "x": 990.25,
+        "y": 720.47
+      },
+      "endpoint2": {
+        "x": 732.6,
+        "y": 814.22
+      },
+      "connects": [
+        {
+          "type": "node",
+          "id": "store-2-10_2-10A"
+        }
+      ]
+    }
+  ],
+  "edges_node_node": [],
+  "edges_node_corridor": [],
+  "edges_corridor_corridor": []
+}
