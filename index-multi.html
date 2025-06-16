@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Multi-floor mall pathfinder (corridor-segment optimal)</title>
+  <meta name="viewport" content="width=1000"/>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2rem; }
+    .floor-block h3 { margin-bottom: 0.2em; }
+    #output, #result { margin-top: 1em; }
+    .success { color: green; font-weight: bold; }
+    .err { color: red; }
+    select { min-width:180px; }
+    #selectPanel { margin-top: 1.5em; }
+    .highlight-polyline { stroke: red !important; stroke-width: 7 !important; fill: none !important; opacity: 0.85; pointer-events: none; }
+    .junction-dot { stroke: #ff0; fill: #f00; stroke-width: 2; opacity: 0.9; pointer-events: none; }
+    svg { border: 1px solid #ccc; margin-bottom: .5em; }
+  </style>
+</head>
+<body>
+  <h2>Tìm đường đi đa tầng tối ưu thực tế (corridor segment, Dijkstra chuẩn, không bao giờ xa hơn!)</h2>
+  <button id="loadBtn">Nạp bản đồ SVG các tầng</button>
+  <span id="loadStatus"></span>
+  <div class="svg-panel">
+    <div class="floor-block" style="width: 50%; float:left;">
+      <h3>Tầng 1</h3>
+      <div id="svgContainer1"></div>
+    </div>
+    <div class="floor-block" style="width: 50%; float:left;">
+      <h3>Tầng 2</h3>
+      <div id="svgContainer2"></div>
+    </div>
+    <div class="floor-block" style="width: 100%; float:left;">
+      <h3>Tầng 3</h3>
+      <div id="svgContainer3"></div>
+    </div>
+  </div>
+  <div id="output"></div>
+  <div id="selectPanel" style="display:none;">
+    <label>Chọn tầng & điểm bắt đầu:</label>
+    <select id="startFloor"></select>
+    <select id="startNode"></select>
+    <label>Chọn tầng & điểm kết thúc:</label>
+    <select id="endFloor"></select>
+    <select id="endNode"></select>
+    <button id="findPathBtn">Tìm đường & Vẽ</button>
+    <div class="result" id="result"></div>
+  </div>
+<script>
+const SVG_FILES = {
+  1: "floor-1m.svg",
+  2: "floor-2m.svg",
+  3: "floor-3m.svg"
+};
+const FLOOR_IDS = [1,2,3];
+let svgTexts = {}, svgDocs = {}, allGraphs = {};
+let graphNodes = {}, graphEdges = {}, nodeToFloor = {};
+let corridorJunctionMap = {}; // {floor: {ptkey: nodeId}}
+let storeStairElevatorMap = {}; // {floor: {nodeId: {x, y, type}}}
+
+// Tạo key dạng "x|y" với 1 số lẻ
+function ptkey(x, y) { return x.toFixed(1)+'|'+y.toFixed(1); }
+function dist(a, b) { return Math.hypot(a.x-b.x, a.y-b.y); }
+
+function parseSVG(svgText) {
+  const parser = new DOMParser();
+  const svgDoc = parser.parseFromString(svgText, "image/svg+xml");
+  let nodes = {};
+  svgDoc.querySelectorAll('circle[id^="store-"],circle[id^="stair-"],circle[id^="elevator-"]').forEach(el => {
+    nodes[el.id] = {
+      id: el.id,
+      x: parseFloat(el.getAttribute('cx')),
+      y: parseFloat(el.getAttribute('cy')),
+      type: el.id.startsWith('store-') ? 'store' : (el.id.startsWith('stair-') ? 'stair' : 'elevator')
+    };
+  });
+  let corridors = {};
+  svgDoc.querySelectorAll('line[id^="corridor-"]').forEach(el => {
+    corridors[el.id] = [
+      {x: parseFloat(el.getAttribute('x1')), y: parseFloat(el.getAttribute('y1'))},
+      {x: parseFloat(el.getAttribute('x2')), y: parseFloat(el.getAttribute('y2'))}
+    ];
+  });
+  svgDoc.querySelectorAll('polyline[id^="corridor-"]').forEach(el => {
+    let points = el.getAttribute('points').trim().split(/\s+/)
+      .map(pt => {
+        let [x, y] = pt.split(',').map(Number);
+        return {x, y};
+      });
+    corridors[el.id] = points;
+  });
+  return {nodes, corridors};
+}
+
+function buildFloorGraph(parsed, floor) {
+  // 1. Tạo node cho từng junction trên corridor, từng endpoint corridor, từng node store/stair/elevator
+  let nodeMap = {}; // ptkey -> nodeId
+  let idToPt = {}; // nodeId -> {x, y, type, floor}
+  let ptToCorridorIds = {};
+  let corridorSegs = [];
+
+  // 1.1. endpoint corridor là junction
+  for (let cid in parsed.corridors) {
+    let pts = parsed.corridors[cid];
+    for (let i=0; i<pts.length; ++i) {
+      let key = ptkey(pts[i].x, pts[i].y);
+      ptToCorridorIds[key] = ptToCorridorIds[key] || [];
+      ptToCorridorIds[key].push(cid);
+    }
+  }
+  // 1.2. Các node store, stair, elevator cũng là junction
+  for (let nid in parsed.nodes) {
+    let n = parsed.nodes[nid];
+    let key = ptkey(n.x, n.y);
+    ptToCorridorIds[key] = ptToCorridorIds[key] || [];
+    ptToCorridorIds[key].push(nid);
+  }
+  // 1.3. Giao điểm corridor-corridor (nếu trùng điểm)
+  // Đã được gom bởi endpoint ở trên!
+
+  // 2. Đánh id cho từng junction
+  let idx = 0;
+  for (let key in ptToCorridorIds) {
+    nodeMap[key] = `N${floor}_${idx++}`;
+  }
+  // 3. Lưu node thực (store, stair, elevator): map nodeId -> node graph
+  storeStairElevatorMap[floor] = {};
+  for (let nid in parsed.nodes) {
+    let n = parsed.nodes[nid];
+    let key = ptkey(n.x, n.y);
+    let gid = nodeMap[key];
+    idToPt[gid] = {x: n.x, y: n.y, type: n.type, realId: nid, floor};
+    storeStairElevatorMap[floor][nid] = {gid, x: n.x, y: n.y, type: n.type};
+  }
+  // 4. Lưu junction corridor
+  corridorJunctionMap[floor] = {};
+  for (let key in nodeMap) {
+    corridorJunctionMap[floor][key] = nodeMap[key];
+  }
+
+  // 5. Tạo cạnh: mỗi đoạn corridor nhỏ là một cạnh
+  let edges = {};
+  for (let cid in parsed.corridors) {
+    let pts = parsed.corridors[cid];
+    for (let i=0; i<pts.length-1; ++i) {
+      let keyA = ptkey(pts[i].x, pts[i].y);
+      let keyB = ptkey(pts[i+1].x, pts[i+1].y);
+      let idA = nodeMap[keyA], idB = nodeMap[keyB];
+      if (!edges[idA]) edges[idA] = [];
+      if (!edges[idB]) edges[idB] = [];
+      edges[idA].push({id: idB, weight: dist(pts[i], pts[i+1])});
+      edges[idB].push({id: idA, weight: dist(pts[i], pts[i+1])});
+    }
+  }
+  // 6. Nối node thực (store, stair, elevator) vào junction trùng vị trí (nếu chưa có)
+  for (let nid in parsed.nodes) {
+    let n = parsed.nodes[nid];
+    let key = ptkey(n.x, n.y);
+    let gid = nodeMap[key];
+    // Đã nối ở trên! Đảm bảo node này có idToPt[gid] mang type đúng!
+  }
+  return {nodeMap, idToPt, edges};
+}
+
+// Kết nối elevator/stair đa tầng
+function connectVerticalNode(type) {
+  // type = "elevator" hoặc "stair"
+  let map = {};
+  for (let floor of FLOOR_IDS) {
+    for (let nid in storeStairElevatorMap[floor]) {
+      let n = storeStairElevatorMap[floor][nid];
+      if (n.type === type) {
+        map[nid] = map[nid] || [];
+        map[nid].push({floor, gid: n.gid, x: n.x, y: n.y});
+      }
+    }
+  }
+  for (let ids in map) {
+    let arr = map[ids];
+    for(let i=0; i<arr.length; ++i) for(let j=i+1; j<arr.length; ++j) {
+      let a = arr[i], b = arr[j];
+      // Nối hai node cùng id ở các tầng khác nhau
+      if (!graphEdges[a.gid]) graphEdges[a.gid] = [];
+      if (!graphEdges[b.gid]) graphEdges[b.gid] = [];
+      let w = dist(a, b);
+      graphEdges[a.gid].push({id: b.gid, weight: w});
+      graphEdges[b.gid].push({id: a.gid, weight: w});
+    }
+  }
+}
+
+// Dijkstra optimal
+function dijkstraPath(start, end) {
+  let distmap = {}, prev = {}, queue = new Set(Object.keys(graphNodes));
+  for (let k of queue) distmap[k] = Infinity;
+  distmap[start] = 0;
+  while (queue.size) {
+    let u = null, minD = Infinity;
+    for (let k of queue) {
+      if (distmap[k] < minD) { minD = distmap[k]; u = k; }
+    }
+    if (u === null) break;
+    queue.delete(u);
+    if (u === end) break;
+    for (let vw of (graphEdges[u]||[])) {
+      let v = vw.id, w = vw.weight;
+      if (distmap[u] + w < distmap[v]) {
+        distmap[v] = distmap[u] + w;
+        prev[v] = u;
+      }
+    }
+  }
+  let path = [], cur = end;
+  while (cur !== undefined) { path.unshift(cur); cur = prev[cur]; }
+  return path.length && path[0] === start ? path : null;
+}
+
+function clearHighlight(svgDoc) {
+  if (!svgDoc) return;
+  let g = svgDoc.querySelector('#path-highlight-layer');
+  if (g) { g.innerHTML = ''; }
+}
+function ensureHighlightLayer(svgDoc) {
+  let g = svgDoc.querySelector('#path-highlight-layer');
+  if (!g) {
+    g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+    g.setAttribute("id", "path-highlight-layer");
+    svgDoc.appendChild(g);
+  }
+  return g;
+}
+function drawPolylineCorridorOnSVG(floor, ptArr) {
+  clearHighlight(svgDocs[floor]);
+  let g = ensureHighlightLayer(svgDocs[floor]);
+  let ns = "http://www.w3.org/2000/svg";
+  let polyline = document.createElementNS(ns, "polyline");
+  polyline.setAttribute("points", ptArr.map(pt=>`${pt.x},${pt.y}`).join(" "));
+  polyline.setAttribute("class","highlight-polyline");
+  g.appendChild(polyline);
+  for (let pt of ptArr) {
+    let dot = document.createElementNS(ns, "circle");
+    dot.setAttribute("cx", pt.x); dot.setAttribute("cy", pt.y);
+    dot.setAttribute("r", 6);
+    dot.setAttribute("class", "junction-dot");
+    g.appendChild(dot);
+  }
+}
+
+document.getElementById('loadBtn').onclick = async function() {
+  document.getElementById('output').innerHTML = "";
+  document.getElementById('result').innerHTML = "";
+  document.getElementById('selectPanel').style.display = 'none';
+  document.getElementById('loadStatus').innerHTML = "Đang tải SVG các tầng...";
+  try {
+    svgTexts = {}; svgDocs = {}; allGraphs = {}; graphNodes = {}; graphEdges = {}; nodeToFloor = {};
+    corridorJunctionMap = {}; storeStairElevatorMap = {};
+    for (let floor of FLOOR_IDS) {
+      const resp = await fetch(SVG_FILES[floor]);
+      if (!resp.ok) throw new Error("Không tải được SVG tầng "+floor);
+      svgTexts[floor] = await resp.text();
+      document.getElementById('svgContainer'+floor).innerHTML = svgTexts[floor];
+      svgDocs[floor] = document.getElementById('svgContainer'+floor).querySelector('svg');
+    }
+    // build graph
+    for (let floor of FLOOR_IDS) {
+      let parsed = parseSVG(svgTexts[floor]);
+      let {nodeMap, idToPt, edges} = buildFloorGraph(parsed, floor);
+      allGraphs[floor] = {nodeMap, idToPt, edges, parsed};
+      // merge node, edge
+      for (let gid in idToPt) { graphNodes[gid] = {...idToPt[gid], floor}; nodeToFloor[gid] = floor; }
+      for (let gid in edges) {
+        if (!graphEdges[gid]) graphEdges[gid] = [];
+        for (let vw of edges[gid]) graphEdges[gid].push(vw);
+      }
+    }
+    // Kết nối elevator/stair đa tầng
+    connectVerticalNode("elevator");
+    connectVerticalNode("stair");
+
+    // Giao diện chọn điểm
+    let selStartFloor = document.getElementById('startFloor');
+    let selEndFloor = document.getElementById('endFloor');
+    selStartFloor.innerHTML = selEndFloor.innerHTML = FLOOR_IDS.map(f => `<option value="${f}">Tầng ${f}</option>`).join('');
+    let selStartNode = document.getElementById('startNode');
+    let selEndNode = document.getElementById('endNode');
+    let updateNodeSelect = (selNode, floor) => {
+      let list = [];
+      for (let nid in storeStairElevatorMap[floor]) {
+        let n = storeStairElevatorMap[floor][nid];
+        list.push(`<option value="${nid}">${nid} (${n.type})</option>`);
+      }
+      selNode.innerHTML = list.join("");
+    };
+    updateNodeSelect(selStartNode, FLOOR_IDS[0]);
+    updateNodeSelect(selEndNode, FLOOR_IDS[0]);
+    selStartFloor.onchange = ()=>updateNodeSelect(selStartNode, selStartFloor.value);
+    selEndFloor.onchange = ()=>updateNodeSelect(selEndNode, selEndFloor.value);
+
+    document.getElementById('selectPanel').style.display = '';
+    document.getElementById('output').innerHTML = "<span class='success'>✔ Đã tải bản đồ và sinh Graph đa tầng tối ưu thành công!</span>";
+  } catch(e) {
+    document.getElementById('output').innerHTML = "<p class='err'>Lỗi tải SVG hoặc phân tích: " + e + "</p>";
+    document.getElementById('loadStatus').innerHTML = "";
+    document.getElementById('selectPanel').style.display = 'none';
+  }
+  document.getElementById('loadStatus').innerHTML = "";
+};
+
+document.getElementById('findPathBtn').onclick = function() {
+  // Xác định nodeId graph tương ứng với node thực
+  let sf = document.getElementById('startFloor').value;
+  let sreal = document.getElementById('startNode').value;
+  let ef = document.getElementById('endFloor').value;
+  let ereal = document.getElementById('endNode').value;
+  let sgid = storeStairElevatorMap[sf][sreal].gid;
+  let egid = storeStairElevatorMap[ef][ereal].gid;
+  for(let floor of FLOOR_IDS) clearHighlight(svgDocs[floor]);
+  if (sgid === egid) {
+    document.getElementById('result').innerHTML = "Vui lòng chọn 2 điểm khác nhau";
+    return;
+  }
+  let path = dijkstraPath(sgid, egid);
+  if (!path) {
+    document.getElementById('result').innerHTML = "<span class='err'>Không tìm thấy đường đi giữa 2 điểm này!</span>";
+    return;
+  }
+  document.getElementById('result').innerHTML =
+    "<b>Đường đi ngắn nhất:</b><br>" +
+    path.map(x => `${graphNodes[x].realId||""}`).join(" → ") +
+    "<br><br>Chiều dài đường đi: <b>" +
+    (path.length>1 ? path.slice(1).reduce((s,i,idx)=>s+dist(graphNodes[path[idx]], graphNodes[i]),0).toFixed(1) : 0)
+    + "</b> px";
+  // Vẽ polyline trên từng tầng
+  let ptsByFloor = {};
+  for (let floor of FLOOR_IDS) ptsByFloor[floor] = [];
+  for (let i=0; i<path.length; ++i) {
+    let gid = path[i], floor = nodeToFloor[gid];
+    ptsByFloor[floor].push({x: graphNodes[gid].x, y: graphNodes[gid].y});
+  }
+  for (let floor of FLOOR_IDS) if (ptsByFloor[floor].length>1)
+    drawPolylineCorridorOnSVG(floor, ptsByFloor[floor]);
+};
+</script>
+</body>
+</html>
